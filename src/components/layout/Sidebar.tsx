@@ -25,9 +25,9 @@ export function Sidebar({ isOpen, onClose, routes: customRoutes }: SidebarProps)
     const defaultRoutes = [
         { label: "Panel principal", icon: LayoutDashboard, href: "/" },
         { label: "Hojas de ruta", icon: FileText, href: "/tracking" },
-        { label: "Entidades", icon: Users, href: "/entities" },
-        { label: "Transporte", icon: Truck, href: "/transport" },
-        { label: "Plantas de trat.", icon: Building2, href: "/treatment-plants" },
+        { label: "Generadores", icon: Users, href: "/entities" },
+        { label: "Transportistas", icon: Truck, href: "/transport" },
+        { label: "Plantas", icon: Building2, href: "/treatment-plants" },
         { label: "Configuración", icon: Settings, href: "/settings" },
     ];
 

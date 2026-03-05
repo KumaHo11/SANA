@@ -1,4 +1,3 @@
-import DashboardLayout from "@/components/layout/DashboardLayout";
 import Link from "next/link";
 import { Plus, Building2, Filter } from "lucide-react";
 import { createClient } from "@/utils/supabase/server";
@@ -24,7 +23,7 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
     const { data: plants, error } = await queryBuilder;
 
     return (
-        <DashboardLayout>
+        <div className="space-y-6 animate-in slide-in-from-bottom-4 fade-in duration-500">
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-slate-900">
@@ -37,7 +36,7 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
                 <div className="flex items-center gap-3">
                     <Link href="/treatment-plants/new" className="flex items-center gap-2 rounded-xl bg-purple-600 px-4 py-2.5 text-sm font-medium text-white shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-all hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(147,51,234,0.4)]">
                         <Plus className="h-4 w-4" />
-                        Nueva planta
+                        Nueva
                     </Link>
                 </div>
             </div>
@@ -45,10 +44,6 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
             <div className="rounded-2xl border bg-white shadow-sm">
                 <div className="flex flex-col gap-4 border-b p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     <SearchInput placeholder="Buscar planta..." colorClass="purple" />
-                    <button className="flex items-center justify-center gap-2 rounded-lg border bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 sm:w-auto">
-                        <Filter className="h-4 w-4" />
-                        Filtros
-                    </button>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -56,10 +51,9 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
                         <thead>
                             <tr className="border-b bg-slate-50/50 text-slate-500">
                                 <th className="px-6 py-4 font-medium">Planta</th>
-                                <th className="px-6 py-4 font-medium">Tecnología</th>
-                                <th className="px-6 py-4 font-medium">Estado</th>
-                                <th className="px-6 py-4 font-medium">Capacidad</th>
-                                <th className="px-6 py-4 font-medium">Última actividad</th>
+                                <th className="px-6 py-4 font-medium">CUIT</th>
+                                <th className="px-6 py-4 font-medium">Datos de Contacto</th>
+                                <th className="px-6 py-4 font-medium text-center">Estado</th>
                                 <th className="px-6 py-4 font-medium text-right">Acciones</th>
                             </tr>
                         </thead>
@@ -73,12 +67,17 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
                                             </div>
                                             <div>
                                                 <p className="font-medium text-slate-900">{plt.name}</p>
-                                                <p className="text-xs text-slate-500 w-32 truncate" title={plt.id}>{plt.id}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-slate-600">-</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-6 py-4 text-slate-600">{plt.cuit}</td>
+                                    <td className="px-6 py-4 text-slate-600">
+                                        <div className="flex flex-col">
+                                            <span className="text-sm font-medium">{plt.contact_email || "Sin email"}</span>
+                                            <span className="text-xs text-slate-500 mt-0.5">{plt.address || "Sin dirección"}</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
                                         {plt.is_approved ? (
                                             <span className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium bg-green-50 text-green-700 ring-1 ring-green-600/20">
                                                 Aprobado
@@ -89,10 +88,6 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
                                             </span>
                                         )}
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <span className="text-slate-600">-</span>
-                                    </td>
-                                    <td className="px-6 py-4 text-slate-500">-</td>
                                     <td className="px-6 py-4 text-right">
                                         <CompanyActions id={plt.id} isApproved={plt.is_approved} path="/treatment-plants" editUrl={`/treatment-plants/${plt.id}/edit`} />
                                     </td>
@@ -100,7 +95,7 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
                             ))}
                             {(!plants || plants.length === 0) && (
                                 <tr>
-                                    <td colSpan={6} className="px-6 py-8 text-center text-slate-500">
+                                    <td colSpan={5} className="px-6 py-8 text-center text-slate-500">
                                         No hay plantas operadoras registradas.
                                     </td>
                                 </tr>
@@ -109,6 +104,6 @@ export default async function TreatmentPlantsPage({ searchParams }: { searchPara
                     </table>
                 </div>
             </div>
-        </DashboardLayout>
+        </div>
     );
 }

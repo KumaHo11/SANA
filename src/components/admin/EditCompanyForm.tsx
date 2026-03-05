@@ -78,6 +78,20 @@ export function EditCompanyForm({
                         </div>
                     </div>
 
+                    <div className="space-y-6">
+                        <h2 className="text-lg font-semibold text-slate-900 border-b border-slate-100 pb-2">Datos de Contacto</h2>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700">Nombre de Contacto</label>
+                                <input type="text" name="contact_name" defaultValue={company.contact_name || ''} className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700">Email de Contacto</label>
+                                <input type="email" name="contact_email" defaultValue={company.contact_email || ''} className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
                         <Link href={returnUrl} className="rounded-xl px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
                             Cancelar

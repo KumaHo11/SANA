@@ -1,7 +1,7 @@
 import { Filter, MapPin, Truck, Activity, FileText, Plus, X } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
-import DashboardLayout from "@/components/layout/DashboardLayout";
+// removed layout import
 import { SearchInput } from "@/components/admin/SearchInput";
 
 export default async function TrackingPage({ searchParams }: { searchParams: Promise<{ manifest?: string, query?: string }> }) {
@@ -66,11 +66,11 @@ export default async function TrackingPage({ searchParams }: { searchParams: Pro
     }
 
     return (
-        <DashboardLayout>
+        <>
             <div className="space-y-6 animate-in slide-in-from-bottom-4 fade-in duration-500">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Hojas de Ruta</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Hojas de ruta</h1>
                         <p className="text-sm text-slate-500">Monitoreo de hojas de ruta y vehículos activos</p>
                     </div>
 
@@ -261,6 +261,6 @@ export default async function TrackingPage({ searchParams }: { searchParams: Pro
                     </div>
                 </div>
             )}
-        </DashboardLayout>
+        </>
     );
 }

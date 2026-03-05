@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/layout/DashboardLayout";
+
 import { EditCompanyForm } from "@/components/admin/EditCompanyForm";
 import { updateCompany } from "@/app/(admin)/entities/actions";
 import { Truck } from "lucide-react";
@@ -15,7 +15,7 @@ export default async function EditTransportPage({ params }: { params: Promise<{ 
     }
 
     return (
-        <DashboardLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
             <EditCompanyForm
                 company={company}
                 updateAction={updateCompany}
@@ -26,6 +26,6 @@ export default async function EditTransportPage({ params }: { params: Promise<{ 
                 iconColorClass="text-orange-600"
                 iconBgClass="bg-orange-100"
             />
-        </DashboardLayout>
+        </div>
     );
 }

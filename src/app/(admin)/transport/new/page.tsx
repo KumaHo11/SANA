@@ -1,6 +1,5 @@
 "use client";
 
-import DashboardLayout from "@/components/layout/DashboardLayout";
 import Link from "next/link";
 import { ArrowLeft, Truck, Save } from "lucide-react";
 import { useActionState } from "react";
@@ -10,7 +9,7 @@ export default function NewTransport() {
     const [state, formAction, isPending] = useActionState(createTransporter as any, null as any);
 
     return (
-        <DashboardLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
             <div className="mb-8">
                 <Link
                     href="/transport"
@@ -24,7 +23,7 @@ export default function NewTransport() {
                         <Truck className="h-6 w-6" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Alta de Empresa Transportista</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Alta de empresa transportista</h1>
                         <p className="text-sm text-slate-500">Registra una nueva flota autorizada para el movimiento de residuos.</p>
                     </div>
                 </div>
@@ -76,6 +75,21 @@ export default function NewTransport() {
                         </div>
                     </div>
 
+                    {/* Sección 3: Datos de Contacto */}
+                    <div className="space-y-6">
+                        <h2 className="text-lg font-semibold text-slate-900 border-b border-slate-100 pb-2">Datos de Contacto</h2>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700">Nombre del Contacto</label>
+                                <input type="text" name="contact_name" placeholder="Ej: Juan Pérez" className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500" required />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700">Email de Contacto</label>
+                                <input type="email" name="contact_email" placeholder="Ej: contacto@transporte.com" className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500" required />
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Botonera */}
                     <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
                         <Link href="/transport" className="rounded-xl px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
@@ -89,6 +103,6 @@ export default function NewTransport() {
 
                 </form>
             </div>
-        </DashboardLayout>
+        </div>
     );
 }

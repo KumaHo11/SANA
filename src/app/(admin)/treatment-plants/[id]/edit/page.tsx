@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/layout/DashboardLayout";
+
 import { EditCompanyForm } from "@/components/admin/EditCompanyForm";
 import { updateCompany } from "@/app/(admin)/entities/actions";
 import { Building2 } from "lucide-react";
@@ -15,7 +15,7 @@ export default async function EditTreatmentPlantPage({ params }: { params: Promi
     }
 
     return (
-        <DashboardLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
             <EditCompanyForm
                 company={company}
                 updateAction={updateCompany}
@@ -26,6 +26,6 @@ export default async function EditTreatmentPlantPage({ params }: { params: Promi
                 iconColorClass="text-purple-600"
                 iconBgClass="bg-purple-100"
             />
-        </DashboardLayout>
+        </div>
     );
 }

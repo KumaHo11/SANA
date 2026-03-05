@@ -9,6 +9,8 @@ export async function createTreatmentPlant(prevState: any, formData: FormData) {
 
     const name = formData.get("name") as string;
     const cuit = formData.get("cuit") as string;
+    const contact_name = formData.get("contact_name") as string;
+    const contact_email = formData.get("contact_email") as string;
     const type = 'TREATMENT_PLANT';
 
     // Generamos el UUID
@@ -20,6 +22,8 @@ export async function createTreatmentPlant(prevState: any, formData: FormData) {
         cuit,
         type,
         address: "No especificada",
+        contact_name,
+        contact_email
     });
 
     if (error) {

@@ -45,10 +45,13 @@ export async function updateCompany(
     const name = formData.get("name") as string;
     const cuit = formData.get("cuit") as string;
     const address = formData.get("address") as string;
+    const contact_name = formData.get("contact_name") as string;
+    const contact_email = formData.get("contact_email") as string;
     const returnPath = formData.get("returnPath") as string;
 
-    if (!id || !name || !cuit || !address) {
-        return { error: "Todos los campos son obligatorios" };
+    // Address may be passed as optional in some cases but currently required
+    if (!id || !name || !cuit) {
+        return { error: "Los campos principales son obligatorios" };
     }
 
     const supabase = await createClient();
@@ -59,6 +62,8 @@ export async function updateCompany(
             name,
             cuit,
             address,
+            contact_name,
+            contact_email
         })
         .eq('id', id);
 

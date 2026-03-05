@@ -10,7 +10,7 @@ export default function NewTreatmentPlant() {
     const [state, formAction, isPending] = useActionState(createTreatmentPlant as any, null as any);
 
     return (
-        <DashboardLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
             <div className="mb-8">
                 <Link
                     href="/treatment-plants"
@@ -24,7 +24,7 @@ export default function NewTreatmentPlant() {
                         <Building2 className="h-6 w-6" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Nueva Planta de Tratamiento</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Nueva planta de tratamiento</h1>
                         <p className="text-sm text-slate-500">Registra una nueva instalación operadora en el sistema SANA.</p>
                     </div>
                 </div>
@@ -57,23 +57,17 @@ export default function NewTreatmentPlant() {
                         </div>
                     </div>
 
-                    {/* Sección 2: Operaciones */}
+                    {/* Sección 2: Datos de Contacto */}
                     <div className="space-y-6">
-                        <h2 className="text-lg font-semibold text-slate-900 border-b border-slate-100 pb-2">Capacidad y Tecnología</h2>
+                        <h2 className="text-lg font-semibold text-slate-900 border-b border-slate-100 pb-2">Datos de Contacto</h2>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700">Tipo de Tecnología Principal</label>
-                                <select className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" required>
-                                    <option value="">Seleccionar tecnología</option>
-                                    <option value="incineracion">Incineración</option>
-                                    <option value="autoclave">Autoclave / Esterilización</option>
-                                    <option value="microondas">Microondas</option>
-                                    <option value="quimico">Tratamiento Químico</option>
-                                </select>
+                                <label className="block text-sm font-medium text-slate-700">Nombre del Contacto</label>
+                                <input type="text" name="contact_name" placeholder="Ej: Juan Pérez" className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" required />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700">Capacidad Tonal/Mes (Estimada)</label>
-                                <input type="number" placeholder="Ej: 1500" className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" required />
+                                <label className="block text-sm font-medium text-slate-700">Email de Contacto</label>
+                                <input type="email" name="contact_email" placeholder="Ej: contacto@planta.com" className="mt-1.5 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm text-slate-900 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" required />
                             </div>
                         </div>
                     </div>
@@ -91,6 +85,6 @@ export default function NewTreatmentPlant() {
 
                 </form>
             </div>
-        </DashboardLayout>
+        </div>
     );
 }

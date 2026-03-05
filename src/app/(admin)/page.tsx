@@ -1,6 +1,6 @@
-import DashboardLayout from "@/components/layout/DashboardLayout";
 import { OverviewCards } from "@/components/dashboard/OverviewCards";
 import { RecentActivity } from "@/components/dashboard/RecentActivity";
+import { ExportButton } from "@/components/dashboard/ExportButton";
 import { FileDown, Plus } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
@@ -39,7 +39,7 @@ export default async function DashboardPage() {
     .limit(5);
 
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">
@@ -50,14 +50,7 @@ export default async function DashboardPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:text-slate-900">
-            <FileDown className="h-4 w-4" />
-            Exportar datos
-          </button>
-          <Link href="/tracking/new" className="flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-sm font-medium text-white shadow-[0_0_20px_rgba(22,163,74,0.3)] transition-all hover:bg-green-700 hover:shadow-[0_0_25px_rgba(22,163,74,0.4)]">
-            <Plus className="h-4 w-4" />
-            Nuevo manifiesto
-          </Link>
+          <ExportButton />
         </div>
       </div>
 
@@ -76,6 +69,6 @@ export default async function DashboardPage() {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 }

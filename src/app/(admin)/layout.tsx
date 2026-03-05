@@ -1,6 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
+import DashboardLayout from "@/components/layout/DashboardLayout";
+
 export default async function AdminLayout({
     children,
 }: {
@@ -29,5 +31,5 @@ export default async function AdminLayout({
     }
 
     // Si no es ninguno de esos, asumimos que es Administrador de SANA (o Plant)
-    return <>{children}</>;
+    return <DashboardLayout>{children}</DashboardLayout>;
 }

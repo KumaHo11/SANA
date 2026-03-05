@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/layout/DashboardLayout";
+
 import { EditCompanyForm } from "@/components/admin/EditCompanyForm";
 import { updateCompany } from "@/app/(admin)/entities/actions";
 import { Users } from "lucide-react";
@@ -15,7 +15,7 @@ export default async function EditEntityPage({ params }: { params: Promise<{ id:
     }
 
     return (
-        <DashboardLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
             <EditCompanyForm
                 company={company}
                 updateAction={updateCompany}
@@ -26,6 +26,6 @@ export default async function EditEntityPage({ params }: { params: Promise<{ id:
                 iconColorClass="text-blue-600"
                 iconBgClass="bg-blue-100"
             />
-        </DashboardLayout>
+        </div>
     );
 }

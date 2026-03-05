@@ -14,19 +14,24 @@ export function SearchInput({ placeholder, colorClass }: { placeholder: string, 
 
     useEffect(() => {
         const delaysDebounceFn = setTimeout(() => {
-            const params = new URLSearchParams(searchParams);
+            const currentQuery = searchParams.get('query') || '';
+            if (term === currentQuery) return; // Prevent infinite loops
+
+            const params = new URLSearchParams(searchParams.toString());
             if (term) {
                 params.set('query', term);
             } else {
                 params.delete('query');
             }
+
             startTransition(() => {
                 router.replace(`${pathname}?${params.toString()}`);
             });
         }, 300);
 
         return () => clearTimeout(delaysDebounceFn);
-    }, [term, pathname, router, searchParams]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [term, pathname]);
 
     const focusClass = colorClass === 'green' ? 'focus-within:border-green-500' : colorClass === 'orange' ? 'focus-within:border-orange-500' : 'focus-within:border-purple-500';
 

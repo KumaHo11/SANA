@@ -40,7 +40,7 @@ export function ActionButton({
             </button>
 
             {showModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm animate-in fade-in">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm animate-in fade-in">
                     <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl animate-in zoom-in-95">
                         <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
                             <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-red-200 text-red-500">

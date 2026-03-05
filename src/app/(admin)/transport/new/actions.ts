@@ -9,6 +9,8 @@ export async function createTransporter(prevState: any, formData: FormData) {
 
     const name = formData.get("name") as string;
     const cuit = formData.get("cuit") as string;
+    const contact_name = formData.get("contact_name") as string;
+    const contact_email = formData.get("contact_email") as string;
     const type = 'TRANSPORTER';
 
     // Para evitar problemas de RLS si el admin accidentalmente no tiene sesión activa válida o para simplificar la creación
@@ -20,6 +22,8 @@ export async function createTransporter(prevState: any, formData: FormData) {
         cuit,
         type,
         address: "No especificada",
+        contact_name,
+        contact_email
         // Aquí podríamos guardar flota u otros datos si agregamos campos a la tabla companies después
     });
 
