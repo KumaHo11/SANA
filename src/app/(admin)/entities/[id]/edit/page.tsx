@@ -1,7 +1,7 @@
 
 import { EditCompanyForm } from "@/components/admin/EditCompanyForm";
 import { updateCompany } from "@/app/(admin)/entities/actions";
-import { Users } from "lucide-react";
+
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
@@ -22,7 +22,7 @@ export default async function EditEntityPage({ params }: { params: Promise<{ id:
                 returnUrl="/entities"
                 title="Editar Entidad Generadora"
                 subtitle="Modificar datos de la organización."
-                Icon={Users}
+                iconName="Users"
                 iconColorClass="text-blue-600"
                 iconBgClass="bg-blue-100"
             />

@@ -11,18 +11,18 @@ export default function SettingsPage() {
         <DashboardLayout>
             <div className="space-y-6 animate-in slide-in-from-bottom-4 fade-in duration-500">
                 <div>
-                    <h1 className="text-2xl font-bold tracking-tight text-slate-900">Configuración del sistema</h1>
-                    <p className="text-sm text-slate-500">Administra las preferencias y ajustes de tu cuenta SANA</p>
+                    <h1 className="text-3xl font-bold tracking-tight text-slate-900">Configuración del sistema</h1>
+                    <p className="mt-2 text-sm text-slate-600">Administra las preferencias y ajustes de tu cuenta SANA</p>
                 </div>
 
                 <div className="flex flex-col gap-6 lg:flex-row">
 
                     {/* Navigation Sidebar */}
                     <div className="w-full lg:w-64">
-                        <nav className="flex flex-col space-y-1 rounded-xl bg-white p-2 shadow-sm border border-slate-200">
+                        <nav className="flex flex-col space-y-1 rounded-2xl bg-white p-2 shadow-sm border">
                             <button
                                 onClick={() => setActiveTab("general")}
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${activeTab === "general" ? "bg-green-50 text-green-700" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${activeTab === "general" ? "bg-green-50 text-green-700" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                                     }`}
                             >
                                 <Building className="h-4 w-4" />
@@ -57,7 +57,7 @@ export default function SettingsPage() {
 
                     {/* Content Area */}
                     <div className="flex-1">
-                        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        <div className="rounded-2xl border bg-white shadow-sm">
                             {activeTab === "general" && (
                                 <div className="animate-in fade-in duration-300">
                                     <div className="border-b border-slate-100 p-6">

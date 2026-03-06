@@ -120,6 +120,7 @@ export default async function TrackingPage({ searchParams }: { searchParams: Pro
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                 {manifests?.map((shipment: any) => {
                                     const statusMap: Record<string, string> = {
+                                        'CREATED': 'Creado',
                                         'SCHEDULED': 'Programado',
                                         'PICKED_UP': 'Retirado',
                                         'IN_TRANSIT': 'En tránsito',
@@ -178,7 +179,16 @@ export default async function TrackingPage({ searchParams }: { searchParams: Pro
                                     Manifiesto: {selectedManifest.tracking_id || selectedManifest.id.slice(0, 8)}
                                 </h3>
                                 <p className="text-sm text-slate-500 mt-1">
-                                    Estado: <span className="font-semibold text-blue-600">{selectedManifest.status}</span>
+                                    Estado: <span className="font-semibold text-blue-600">{
+                                        {
+                                            'CREATED': 'Creado',
+                                            'SCHEDULED': 'Programado',
+                                            'PICKED_UP': 'Retirado',
+                                            'IN_TRANSIT': 'En tránsito',
+                                            'DELIVERED': 'Entregado',
+                                            'DISCREPANCY': 'Discrepancia'
+                                        }[selectedManifest.status as string] || selectedManifest.status
+                                    }</span>
                                 </p>
                             </div>
                             <Link href="/tracking" className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -238,12 +248,20 @@ export default async function TrackingPage({ searchParams }: { searchParams: Pro
                                 </h4>
                                 <div className="grid grid-cols-2 gap-3 rounded-xl bg-slate-50 p-4 text-sm">
                                     <div className="flex flex-col">
-                                        <span className="text-slate-500 text-xs font-medium">Bolsas (Transportista)</span>
-                                        <span className="font-semibold text-slate-800">{selectedManifest.verified_bags !== null ? selectedManifest.verified_bags : 'No registradas'}</span>
+                                        <span className="text-slate-500 text-xs font-medium">Bolsas (Declaradas)</span>
+                                        <span className="font-semibold text-slate-800">{selectedManifest.declared_bags !== null ? selectedManifest.declared_bags : '-'}</span>
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-slate-500 text-xs font-medium">Peso (Transportista)</span>
-                                        <span className="font-semibold text-slate-800">{selectedManifest.verified_weight !== null ? `${selectedManifest.verified_weight} kg` : 'No registrado'}</span>
+                                        <span className="text-slate-500 text-xs font-medium">Bolsas (Verificadas)</span>
+                                        <span className="font-semibold text-slate-800">{selectedManifest.verified_bags !== null ? selectedManifest.verified_bags : 'Pte.'}</span>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="text-slate-500 text-xs font-medium">Peso (Declarado)</span>
+                                        <span className="font-semibold text-slate-800">{selectedManifest.declared_weight !== null ? `${selectedManifest.declared_weight} kg` : '-'}</span>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="text-slate-500 text-xs font-medium">Peso (Verificado)</span>
+                                        <span className="font-semibold text-slate-800">{selectedManifest.verified_weight !== null ? `${selectedManifest.verified_weight} kg` : 'Pte.'}</span>
                                     </div>
                                 </div>
                                 {(selectedManifest.transporter_comments || selectedManifest.plant_comments) && (

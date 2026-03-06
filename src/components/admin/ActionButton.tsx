@@ -42,19 +42,21 @@ export function ActionButton({
             {showModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm animate-in fade-in">
                     <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl animate-in zoom-in-95">
-                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-red-200 text-red-500">
-                                <AlertTriangle className="h-5 w-5" />
+                        <div className="flex flex-col items-center text-center">
+                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-red-200 text-red-500">
+                                    <AlertTriangle className="h-5 w-5" />
+                                </div>
                             </div>
+                            <h3 className="mb-3 text-lg font-bold text-slate-900 leading-snug break-words w-full">
+                                Confirmar acción crítica
+                            </h3>
+                            <p className="mb-6 text-[15px] text-slate-600 leading-relaxed break-words w-full">
+                                {type === 'approve' && '¿Estás seguro/a de que quieres aprobar esta entidad para operar en SANA?'}
+                                {type === 'reject' && '¿Estás seguro/a de rechazar o suspender a esta entidad? No podrá operar en SANA.'}
+                                {type === 'delete' && '¿Estás seguro/a de que quieres eliminar esta entidad PERMANENTEMENTE? Esta acción no se puede deshacer.'}
+                            </p>
                         </div>
-                        <h3 className="mb-3 text-lg font-bold text-slate-900 leading-snug">
-                            Confirmar acción crítica
-                        </h3>
-                        <p className="mb-6 text-[15px] text-slate-600 leading-relaxed">
-                            {type === 'approve' && '¿Estás seguro de que quieres aprobar esta entidad para operar en SANA?'}
-                            {type === 'reject' && '¿Estás seguro de que rechazar / suspender a esta entidad? No podrá operar en SANA.'}
-                            {type === 'delete' && '¿Estás seguro de que quieres eliminar esta entidad PERMANENTEMENTE? Esta acción no se puede deshacer.'}
-                        </p>
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setShowModal(false)}

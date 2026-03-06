@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
-import { Save, ArrowLeft, LucideIcon } from "lucide-react";
+import { Save, ArrowLeft, Users, Truck, Building2 } from "lucide-react";
 
 export function EditCompanyForm({
     company,
@@ -10,7 +10,7 @@ export function EditCompanyForm({
     returnUrl,
     title,
     subtitle,
-    Icon,
+    iconName,
     iconColorClass,
     iconBgClass
 }: {
@@ -19,11 +19,13 @@ export function EditCompanyForm({
     returnUrl: string;
     title: string;
     subtitle: string;
-    Icon: LucideIcon;
+    iconName: 'Users' | 'Truck' | 'Building2';
     iconColorClass: string;
     iconBgClass: string;
 }) {
     const [state, formAction, isPending] = useActionState(updateAction as any, null as any);
+
+    const Icon = iconName === 'Users' ? Users : iconName === 'Truck' ? Truck : Building2;
 
     return (
         <div className="mb-8">

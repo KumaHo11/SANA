@@ -4,7 +4,8 @@ import {
     Recycle,
     Truck,
     ArrowUpRight,
-    ArrowDownRight
+    ArrowDownRight,
+    Package
 } from "lucide-react";
 
 export function OverviewCards({ stats }: {
@@ -12,7 +13,11 @@ export function OverviewCards({ stats }: {
         generators: number,
         transporters: number,
         plants: number,
-        activeManifests: number
+        activeManifests: number,
+        transportWeight: number,
+        plantWeight: number,
+        transportBags: number,
+        plantBags: number
     }
 }) {
     const cards = [
@@ -48,6 +53,38 @@ export function OverviewCards({ stats }: {
             icon: Map,
             color: "purple",
         },
+        {
+            title: "Kg por Transporte",
+            value: stats.transportWeight.toString() + " kg",
+            change: "",
+            trend: "up",
+            icon: Truck,
+            color: "blue",
+        },
+        {
+            title: "Kg en Plantas",
+            value: stats.plantWeight.toString() + " kg",
+            change: "",
+            trend: "up",
+            icon: Recycle,
+            color: "green",
+        },
+        {
+            title: "Bolsas (Transporte)",
+            value: stats.transportBags.toString(),
+            change: "",
+            trend: "up",
+            icon: Package,
+            color: "orange",
+        },
+        {
+            title: "Bolsas (Plantas)",
+            value: stats.plantBags.toString(),
+            change: "",
+            trend: "up",
+            icon: Package,
+            color: "purple",
+        },
     ];
 
     return (
@@ -70,17 +107,21 @@ export function OverviewCards({ stats }: {
                                 {card.value}
                             </h3>
                             <p className="mt-1 flex items-center gap-1 text-sm">
-                                <span
-                                    className={`flex items-center font-medium text-slate-400`}
-                                >
-                                    {card.trend === "up" ? (
-                                        <ArrowUpRight className="h-4 w-4" />
-                                    ) : (
-                                        <ArrowDownRight className="h-4 w-4" />
-                                    )}
-                                    {card.change}
-                                </span>
-                                <span className="text-slate-500">desde inicio</span>
+                                {card.change && (
+                                    <>
+                                        <span
+                                            className={`flex items-center font-medium text-slate-400`}
+                                        >
+                                            {card.trend === "up" ? (
+                                                <ArrowUpRight className="h-4 w-4" />
+                                            ) : (
+                                                <ArrowDownRight className="h-4 w-4" />
+                                            )}
+                                            {card.change}
+                                        </span>
+                                        <span className="text-slate-500">desde inicio</span>
+                                    </>
+                                )}
                             </p>
                         </div>
                     </div>

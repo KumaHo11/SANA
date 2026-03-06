@@ -22,11 +22,11 @@ export default async function AdminLayout({
         .single();
 
     // Redirigir a usuarios con otros roles a sus apps correspondientes
-    if (profile?.role === 'ADMIN_TRANSPORTER' || profile?.role === 'TRANSPORTER') {
+    if (profile?.role === 'ADMIN_TRANSPORTER' || profile?.role === 'TRANSPORTER' || profile?.role === 'OPERATOR_TRANSPORTER') {
         redirect("/transporter-app");
     }
 
-    if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR') {
+    if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR' || profile?.role === 'OPERATOR_GENERATOR') {
         redirect("/generator-app");
     }
 

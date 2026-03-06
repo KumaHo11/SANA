@@ -21,10 +21,17 @@ export async function login(formData: FormData) {
     // Role and approval check
     const { data: profile } = await supabase
         .from('profiles')
-        .select('role, company_id')
+        .select('role, company_id, is_approved')
         .eq('id', authData.user.id)
         .single();
 
+    // Verificación 1: Aprobación individual (Del Empleado/Usuario)
+    if (profile && profile.role !== 'ADMIN' && profile.role !== 'SUPERADMIN' && profile.is_approved === false) {
+        await supabase.auth.signOut();
+        redirect("/login?error=pending_approval");
+    }
+
+    // Verificación 2: Aprobación de la Empresa
     if (profile?.company_id) {
         const { data: company } = await supabase
             .from('companies')
@@ -32,18 +39,18 @@ export async function login(formData: FormData) {
             .eq('id', profile.company_id)
             .single();
 
-        if (company && !company.is_approved) {
+        if (company && company.is_approved === false) {
             await supabase.auth.signOut();
             redirect("/login?error=pending_approval");
         }
     }
 
     let targetUrl = "/";
-    if (profile?.role === 'ADMIN_TRANSPORTER' || profile?.role === 'TRANSPORTER') {
+    if (profile?.role === 'ADMIN_TRANSPORTER' || profile?.role === 'TRANSPORTER' || profile?.role === 'OPERATOR_TRANSPORTER') {
         targetUrl = "/transporter-app";
-    } else if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR') {
-        targetUrl = "/generator-app"; // If it doesn't exist yet, it'll 404, we can let user handle that or redirect to /
-    } else if (profile?.role === 'ADMIN_PLANT' || profile?.role === 'PLANT') {
+    } else if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR' || profile?.role === 'OPERATOR_GENERATOR') {
+        targetUrl = "/generator-app";
+    } else if (profile?.role === 'ADMIN_PLANT' || profile?.role === 'PLANT' || profile?.role === 'OPERATOR_PLANT') {
         targetUrl = "/plant-app";
     }
 

@@ -9,18 +9,33 @@ export default async function DashboardPage() {
   const supabase = await createClient();
 
   // Parallel requests for counts
-  const [{ count: generatorsCount }, { count: transportersCount }, { count: plantsCount }, { count: activeManifestsCount }] = await Promise.all([
+  const [{ count: generatorsCount }, { count: transportersCount }, { count: plantsCount }, { count: activeManifestsCount }, { data: allManifests }] = await Promise.all([
     supabase.from('companies').select('*', { count: 'exact', head: true }).eq('type', 'GENERATOR'),
     supabase.from('companies').select('*', { count: 'exact', head: true }).eq('type', 'TRANSPORTER'),
     supabase.from('companies').select('*', { count: 'exact', head: true }).eq('type', 'TREATMENT_PLANT'),
-    supabase.from('manifests').select('*', { count: 'exact', head: true }).in('status', ['IN_TRANSIT', 'PICKED_UP'])
+    supabase.from('manifests').select('*', { count: 'exact', head: true }).in('status', ['IN_TRANSIT', 'PICKED_UP']),
+    supabase.from('manifests').select('declared_bags, declared_weight, verified_bags, verified_weight')
   ]);
+
+  let transportWeight = 0, plantWeight = 0, transportBags = 0, plantBags = 0;
+  if (allManifests) {
+    allManifests.forEach((m) => {
+      transportWeight += m.declared_weight || 0;
+      plantWeight += m.verified_weight || 0;
+      transportBags += m.declared_bags || 0;
+      plantBags += m.verified_bags || 0;
+    });
+  }
 
   const stats = {
     generators: generatorsCount || 0,
     transporters: transportersCount || 0,
     plants: plantsCount || 0,
-    activeManifests: activeManifestsCount || 0
+    activeManifests: activeManifestsCount || 0,
+    transportWeight,
+    plantWeight,
+    transportBags,
+    plantBags,
   };
 
   // Fetch recent manifests

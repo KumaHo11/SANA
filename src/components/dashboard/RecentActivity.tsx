@@ -18,8 +18,13 @@ export function RecentActivity({ activities }: { activities: any[] }) {
             case "CREATED":
             case "PENDING":
                 return {
-                    label: "Pendiente",
+                    label: "Creado",
                     style: "bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20"
+                };
+            case "SCHEDULED":
+                return {
+                    label: "Programado",
+                    style: "bg-blue-50 text-blue-700 ring-1 ring-blue-600/20"
                 };
             case "DISCREPANCY":
                 return {

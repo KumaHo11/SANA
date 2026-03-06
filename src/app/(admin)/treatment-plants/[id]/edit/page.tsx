@@ -1,7 +1,7 @@
 
 import { EditCompanyForm } from "@/components/admin/EditCompanyForm";
 import { updateCompany } from "@/app/(admin)/entities/actions";
-import { Building2 } from "lucide-react";
+
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
@@ -22,7 +22,7 @@ export default async function EditTreatmentPlantPage({ params }: { params: Promi
                 returnUrl="/treatment-plants"
                 title="Editar Planta de Tratamiento"
                 subtitle="Modificar datos de la planta operadora."
-                Icon={Building2}
+                iconName="Building2"
                 iconColorClass="text-purple-600"
                 iconBgClass="bg-purple-100"
             />

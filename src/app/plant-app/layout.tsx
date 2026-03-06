@@ -20,11 +20,11 @@ export default async function PlantAppLayout({
         .single();
 
     // Roles permitidos para la app de plantas
-    if (profile?.role !== 'ADMIN_PLANT' && profile?.role !== 'PLANT_OPERATOR' && profile?.role !== 'ADMIN_GENERAL' && profile?.role !== 'ADMIN') {
-        if (profile?.role === 'ADMIN_TRANSPORTER' || profile?.role === 'TRANSPORTER') {
+    if (profile?.role !== 'ADMIN_PLANT' && profile?.role !== 'PLANT_OPERATOR' && profile?.role !== 'PLANT' && profile?.role !== 'OPERATOR_PLANT' && profile?.role !== 'ADMIN_GENERAL' && profile?.role !== 'SUPERADMIN') {
+        if (profile?.role === 'ADMIN_TRANSPORTER' || profile?.role === 'TRANSPORTER' || profile?.role === 'OPERATOR_TRANSPORTER') {
             redirect("/transporter-app");
         }
-        if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR') {
+        if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR' || profile?.role === 'OPERATOR_GENERATOR') {
             redirect("/generator-app");
         }
         redirect("/");

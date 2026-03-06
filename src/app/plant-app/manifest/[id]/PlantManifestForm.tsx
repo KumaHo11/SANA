@@ -7,6 +7,7 @@ import { verifyManifestAction } from "./actions";
 
 export default function PlantManifestForm({
     manifestId,
+    trackingId,
     declaredBags,
     declaredWeight,
     generatorName,
@@ -14,6 +15,7 @@ export default function PlantManifestForm({
     scheduledDate
 }: {
     manifestId: string;
+    trackingId?: string;
     declaredBags: number;
     declaredWeight: number;
     generatorName: string;
@@ -62,9 +64,11 @@ export default function PlantManifestForm({
             <form onSubmit={handleSubmit} className="px-5 py-6 pb-24 space-y-6">
 
                 <div>
-                    <label className="block text-[#0f9f3f] font-medium text-sm mb-1.5">ID Manifiesto</label>
+                    <label className="block text-[#0f9f3f] font-medium text-sm mb-1.5">Hoja de Ruta</label>
                     <div className="w-full rounded-xl border border-green-400 p-3 bg-white shadow-sm flex items-center">
-                        <span className="text-slate-800 font-medium w-full truncate" title={manifestId}>{manifestId}</span>
+                        <span className="text-slate-800 font-medium w-full truncate" title={trackingId || manifestId}>
+                            {trackingId || manifestId}
+                        </span>
                     </div>
                 </div>
 

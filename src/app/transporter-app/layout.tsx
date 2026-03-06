@@ -20,8 +20,8 @@ export default async function TransporterAppLayout({
         .eq('id', authData.user.id)
         .single();
 
-    if (profile?.role !== 'ADMIN_TRANSPORTER' && profile?.role !== 'TRANSPORTER') {
-        if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR') {
+    if (profile?.role !== 'ADMIN_TRANSPORTER' && profile?.role !== 'TRANSPORTER' && profile?.role !== 'OPERATOR_TRANSPORTER') {
+        if (profile?.role === 'ADMIN_GENERATOR' || profile?.role === 'GENERATOR' || profile?.role === 'OPERATOR_GENERATOR') {
             redirect("/generator-app");
         }
         // Si no es transportista ni generador, asumimos Admin SANA
