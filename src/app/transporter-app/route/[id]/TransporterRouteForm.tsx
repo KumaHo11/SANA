@@ -187,9 +187,9 @@ export default function TransporterRouteForm({
                             <button
                                 onClick={submitForm}
                                 disabled={isPending}
-                                className="flex-1 rounded-lg bg-[#FBBF24] px-4 py-3 text-[15px] font-bold text-white hover:bg-yellow-500 flex items-center justify-center disabled:opacity-50"
+                                className="flex-1 rounded-lg bg-[#FBBF24] px-4 py-3 text-[15px] font-bold text-white hover:bg-yellow-500 flex items-center justify-center whitespace-nowrap disabled:opacity-50"
                             >
-                                {isPending ? "Validando..." : "Si, estoy seguro"}
+                                {isPending ? "Validando..." : "Si, confirmar viaje"}
                             </button>
                         </div>
                     </div>
